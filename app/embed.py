@@ -1,0 +1,18 @@
+from sentence_transformers import SentenceTransformer
+from chunk import create_chunks
+from load_pdf import load_pdf
+
+
+# Load the embedding model
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+
+def create_embeddings(chunks):
+
+    texts = [chunk["text"] for chunk in chunks]
+
+    embeddings = model.encode(texts)
+
+    return embeddings
+
+
